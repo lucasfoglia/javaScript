@@ -1,28 +1,21 @@
-let sumaEdades = 0;
-let cantidadDePersonas = 0;
 let respuesta = "si";
- const arrayEdades = [];
-
-
-
+const arrayPersonas = [];
 
 function calcularPromedio() {
-  return (sumaEdades / cantidadDePersonas).toFixed(2);
+  return arrayPersonas.reduce((acumulador, actual) => acumulador + actual.edad, 0) / arrayPersonas.length;
 }
 
 while (respuesta === "si") {
-  const entrada = Number(prompt("Ingrese edad de la persona:  "));
-  sumaEdades += entrada;
-  arrayEdades.push(entrada);
-  cantidadDePersonas++;
+  const nombre = prompt("Ingrese nombre de la persona");
+  const edad = Number(prompt("Ingrese edad de la persona:  "));
+  arrayPersonas.push({ edad, nombre });
   respuesta = prompt("Quiere ingresar otra edad? conteste si o no ");
 }
 
-if (cantidadDePersonas > 0) {
-  let promedio = calcularPromedio();
-  alert("Se ingresaron " + arrayEdades.length + " Edades");
+if (arrayPersonas.length) {
+  const promedio = calcularPromedio();
+  alert("Se ingresaron " + arrayPersonas.length + " Edades");
   alert("El promedio de edades registrado es de " + promedio);
 } else {
   alert("No se puede calcular el promedio");
-
 }
